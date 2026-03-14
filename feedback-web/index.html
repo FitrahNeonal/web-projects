@@ -483,7 +483,9 @@
                 const card = document.createElement('div');
                 card.className = 'review-card';
                 const timeAgo = getTimeAgo(review.timestamp);
-                const isLiked = likedIds.includes(review.id);
+                // Cek like dari localStorage
+                const savedLikes = JSON.parse(localStorage.getItem('likedReviews') || '[]');
+                const isLiked = savedLikes.includes(review.id);
                 card.innerHTML = `
                     <div class="review-header">
                         <div class="reviewer-name">👤 ${escapeHtml(review.name)}</div>
@@ -499,45 +501,24 @@
                 reviewsList.appendChild(card);
             });
         }
-    
+        
         // 5. Handle Like (FIXED)
         window.handleLike = async (id) => {
-            // Cek sudah like atau belum
-            if (likedIds.includes(id)) {
+            let likedReviews = JSON.parse(localStorage.getItem('likedReviews') || '[]');
+            
+            if (likedReviews.includes(id)) {
                 alert('Kamu sudah like review ini! 💖');
                 return;
             }
-    
+        
             const review = allReviews.find(r => r.id == id);
             if (!review) return;
-    
-            const newLikes = review.likes + 1;
-            const btn = event.currentTarget;
+        
+            review.likes = (review.likes || 0) + 1;
+            likedReviews.push(id);
+            localStorage.setItem('likedReviews', JSON.stringify(likedReviews));
             
-            // Disable button sementara
-            btn.disabled = true;
-    
-            try {
-                // Update ke SheetDB
-                const response = await fetch(`${SHEETDB_URL}/search?id=${id}`, {
-                    method: 'PATCH',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ data: { likes: newLikes } })
-                });
-    
-                if (!response.ok) throw new Error('Gagal update');
-    
-                // Update local data
-                review.likes = newLikes;
-                likedIds.push(id);
-                
-                // Re-render untuk update tampilan
-                renderReviews();
-            } catch (error) {
-                console.error(error);
-                alert('Gagal like 😢');
-                btn.disabled = false;
-            }
+            renderReviews();
         };
     
         // 6. Sort Event
@@ -568,6 +549,12 @@
         loadReviews();
         // Auto refresh setiap 30 detik (lebih lama agar like tidak reset)
         setInterval(loadReviews, 30000);
+
+        // Load liked reviews from localStorage on start
+        const savedLikes = localStorage.getItem('likedReviews');
+        if (savedLikes) {
+            likedIds = JSON.parse(savedLikes);
+        }
     </script>
 </body>
 </html>
