@@ -384,27 +384,28 @@
 
     <script>
         // ⚠️ GANTI URL INI DENGAN URL DARI SHEETDB.IO ⚠️
-        const SHEETDB_URL = 'https://sheetdb.io/api/v1/30zdnnx9m6sm7';
-
+        const SHEETDB_URL = 'https://sheetdb.io/api/v1/YOUR_UNIQUE_ID';
+    
         const form = document.getElementById('feedbackForm');
         const submitBtn = document.getElementById('submitBtn');
         const floatingArea = document.getElementById('floatingArea');
         const reviewsList = document.getElementById('reviewsList');
         const sortSelect = document.getElementById('sortSelect');
-
+    
         let allReviews = [];
         let currentSort = 'newest';
-
+        let likedIds = []; // Track liked IDs locally
+    
         // 1. Submit Feedback
         form.addEventListener('submit', async (e) => {
             e.preventDefault();
             const name = document.getElementById('nameInput').value.trim() || 'Anonim';
             const message = document.getElementById('msgInput').value.trim();
             if (!message) return;
-
+    
             submitBtn.disabled = true;
             submitBtn.innerHTML = '<div class="spinner"></div>';
-
+    
             try {
                 const response = await fetch(SHEETDB_URL, {
                     method: 'POST',
@@ -418,12 +419,12 @@
                         }
                     })
                 });
-
+    
                 if (!response.ok) throw new Error('Gagal kirim');
-
+    
                 createFloatingBubble(name, message);
                 form.reset();
-                loadReviews(); // Refresh list
+                loadReviews();
                 alert('✨ Thanks! Pesanmu sudah dikirim!');
             } catch (error) {
                 console.error(error);
@@ -433,7 +434,7 @@
                 submitBtn.textContent = 'Kirim Sekarang 🚀';
             }
         });
-
+    
         // 2. Floating Bubble
         function createFloatingBubble(name, text) {
             const bubble = document.createElement('div');
@@ -445,14 +446,14 @@
             floatingArea.appendChild(bubble);
             setTimeout(() => bubble.remove(), 13000);
         }
-
+    
         // 3. Load Reviews
         async function loadReviews() {
             try {
                 const response = await fetch(SHEETDB_URL);
                 const data = await response.json();
                 allReviews = data.map((item, index) => ({
-                    id: index,
+                    id: item.id || index, // Gunakan ID dari sheet jika ada
                     name: item.name || 'Anonim',
                     message: item.message,
                     likes: parseInt(item.likes) || 0,
@@ -464,7 +465,7 @@
                 reviewsList.innerHTML = '<div class="empty-state">Gagal load reviews 😅</div>';
             }
         }
-
+    
         // 4. Render Reviews
         function renderReviews() {
             reviewsList.innerHTML = '';
@@ -482,6 +483,7 @@
                 const card = document.createElement('div');
                 card.className = 'review-card';
                 const timeAgo = getTimeAgo(review.timestamp);
+                const isLiked = likedIds.includes(review.id);
                 card.innerHTML = `
                     <div class="review-header">
                         <div class="reviewer-name">👤 ${escapeHtml(review.name)}</div>
@@ -489,42 +491,61 @@
                     </div>
                     <div class="review-text">${escapeHtml(review.message)}</div>
                     <div class="review-actions">
-                        <button class="like-btn" onclick="handleLike(${review.id})">
-                            🤍 <span>${review.likes}</span>
+                        <button class="like-btn ${isLiked ? 'liked' : ''}" onclick="handleLike('${review.id}')">
+                            ${isLiked ? '❤️' : '🤍'} <span>${review.likes}</span>
                         </button>
                     </div>
                 `;
                 reviewsList.appendChild(card);
             });
         }
-
-        // 5. Handle Like
+    
+        // 5. Handle Like (FIXED)
         window.handleLike = async (id) => {
-            const review = allReviews[id];
+            // Cek sudah like atau belum
+            if (likedIds.includes(id)) {
+                alert('Kamu sudah like review ini! 💖');
+                return;
+            }
+    
+            const review = allReviews.find(r => r.id == id);
             if (!review) return;
+    
             const newLikes = review.likes + 1;
+            const btn = event.currentTarget;
             
-            // Update di Google Sheet via SheetDB
+            // Disable button sementara
+            btn.disabled = true;
+    
             try {
-                await fetch(`${SHEETDB_URL}/row/${id + 2}`, { // +2 karena header row 1 dan index mulai 0
+                // Update ke SheetDB
+                const response = await fetch(`${SHEETDB_URL}/search?id=${id}`, {
                     method: 'PATCH',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ data: { likes: newLikes } })
                 });
+    
+                if (!response.ok) throw new Error('Gagal update');
+    
+                // Update local data
                 review.likes = newLikes;
+                likedIds.push(id);
+                
+                // Re-render untuk update tampilan
                 renderReviews();
             } catch (error) {
                 console.error(error);
                 alert('Gagal like 😢');
+                btn.disabled = false;
             }
         };
-
+    
         // 6. Sort Event
         sortSelect.addEventListener('change', (e) => {
             currentSort = e.target.value;
             renderReviews();
         });
-
+    
         // Helpers
         function getTimeAgo(date) {
             const now = new Date();
@@ -537,16 +558,16 @@
             const days = Math.floor(hours / 24);
             return `${days}h lalu`;
         }
-
+    
         function escapeHtml(text) {
             if (!text) return text;
             return text.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;");
         }
-
+    
         // Load on start
         loadReviews();
-        // Auto refresh every 10 seconds
-        setInterval(loadReviews, 10000);
+        // Auto refresh setiap 30 detik (lebih lama agar like tidak reset)
+        setInterval(loadReviews, 30000);
     </script>
 </body>
 </html>
