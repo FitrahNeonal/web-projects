@@ -1,1 +1,432 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>neon — personal space</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
 
+<!-- NAV -->
+<nav>
+  <a href="#home" class="nav-logo">neonal.</a>
+  <div class="nav-right">
+    <ul class="nav-links">
+      <li><a href="#now">now</a></li>
+      <li><a href="#projects">projects</a></li>
+      <li><a href="#musik">musik</a></li>
+      <li><a href="#games">game</a></li>
+      <li><a href="#film">film</a></li>
+      <li><a href="#ideas">ideas</a></li>
+      <li><a href="#guestbook">guestbook</a></li>
+      <li><a href="#contact">contact</a></li>
+    </ul>
+    <button class="sky-toggle" id="sky-toggle" aria-label="toggle dark mode" title="tiup untuk gelap!">
+      <span class="sky-scene">
+        <span class="sky-sun">
+          <span class="sun-core"></span>
+          <span class="sun-ray"></span>
+          <span class="sun-ray"></span>
+          <span class="sun-ray"></span>
+          <span class="sun-ray"></span>
+          <span class="sun-ray"></span>
+          <span class="sun-ray"></span>
+        </span>
+        <span class="sky-moon">🌙</span>
+        <span class="sky-star s1">·</span>
+        <span class="sky-star s2">·</span>
+        <span class="sky-star s3">·</span>
+        <span class="sky-star s4">·</span>
+        <span class="sky-star s5">·</span>
+      </span>
+    </button>
+    <button class="hamburger" id="hamburger" aria-label="buka menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobile-menu">
+  <ul>
+    <li><a href="#now">now</a></li>
+    <li><a href="#projects">projects</a></li>
+    <li><a href="#musik">musik</a></li>
+    <li><a href="#games">game</a></li>
+    <li><a href="#film">film</a></li>
+    <li><a href="#ideas">ideas</a></li>
+    <li><a href="#guestbook">guestbook</a></li>
+    <li><a href="#contact">contact</a></li>
+  </ul>
+</div>
+<div class="mobile-overlay" id="mobile-overlay"></div>
+
+<!-- MAIN -->
+<main>
+
+  <!-- HERO -->
+  <section id="home">
+    <p class="hero-eyebrow">personal space</p>
+    <h1 class="hero-name">halo, aku<br>di sini. <em>:)</em></h1>
+    <p class="hero-bio">
+      Seorang <strong>remaja</strong> yang baru saja menginjak 20 tahun, suka eksplorasi ide-ide kecil dan hal-hal baru yang bikin orang bilang "oh iya ya, kenapa nggak dari dulu".
+    </p>
+    <div class="hero-status">
+      <span class="status-dot"></span>
+      <span class="status-text">open to collaborate</span>
+    </div>
+    <div class="hero-links">
+      <a href="#projects" class="btn btn-primary">lihat projects →</a>
+      <a href="#contact" class="btn btn-ghost">say hello</a>
+    </div>
+  </section>
+
+  <!-- NOW -->
+  <section id="now">
+    <div class="section-label">now</div>
+    <div class="now-grid reveal-group">
+      <div class="now-item">
+        <div class="now-icon">⚡</div>
+        <div>
+          <div class="now-label">sedang ngerjain</div>
+          <div class="now-content">Sebuah project-project kecil, dan juga dari raodmap.sh</div>
+          <div class="now-sub">target: selesai sebelum kelupaan lagi</div>
+        </div>
+      </div>
+      <div class="now-item">
+        <div class="now-icon">📖</div>
+        <div>
+          <div class="now-label">sedang baca</div>
+          <div class="now-content">Komik</div>
+          <div class="now-sub">manhwa dan belakangan ini sedang membaca novel <i>Shadow Slave</i></div>
+        </div>
+      </div>
+      <div class="now-item">
+        <div class="now-icon">🎧</div>
+        <div>
+          <div class="now-label">lagi dengerin</div>
+          <div class="now-content">Joji, Rex Orange County, Daniel Caesar, Coldplay, Frank Ocean, ...</div>
+          <div class="now-sub">TEST DRIVE, Untitled, Rearange My World, Sparks, ...</div>
+        </div>
+      </div>
+      <div class="now-item">
+        <div class="now-icon">🌱</div>
+        <div>
+          <div class="now-label">lagi belajar</div>
+          <div class="now-content">Makan yang banyak</div>
+          <div class="now-sub">Tidur</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section id="projects">
+    <div class="section-label">projects</div>
+    <div class="projects-list reveal-group">
+      <a href="https://t.me/anonyneo_bot" class="project-item">
+        <div class="project-info">
+          <div class="project-name">Anonymous Bot #1</div>
+          <div class="project-desc">lagi nyoba bikin bot di Telegram, chat anonymous</div>
+        </div>
+        <div class="project-right">
+          <span class="tag tag-active">aktif</span>
+          <span class="project-arrow">↗</span>
+        </div>
+      </a>
+      <a href="https://github.com/FitrahNeonal/Roadmap.sh-Projects" class="project-item">
+        <div class="project-info">
+          <div class="project-name">roadmap.sh #2</div>
+          <div class="project-desc">ngerjain challange di website roadmap.sh</div>
+        </div>
+        <div class="project-right">
+          <span class="tag">aktif</span>
+          <span class="project-arrow">↗</span>
+        </div>
+      </a>
+      <a href="https://github.com/FitrahNeonal/PBO-TA-APOTIK-2400018168-Fitrah-Neonal" class="project-item">
+        <div class="project-info">
+          <div class="project-name">Sistem Aplikasi Apotik #3</div>
+          <div class="project-desc">Tugas kuliah, matakuliah Alpro, SData, dan PBO</div>
+        </div>
+        <div class="project-right">
+          <span class="tag">selesai</span>
+          <span class="project-arrow">↗</span>
+        </div>
+      </a>
+    </div>
+  </section>
+
+  <!-- MUSIK -->
+  <section id="musik">
+    <div class="section-label">musik favorit</div>
+    <div class="shelf-grid reveal-group">
+      <div class="shelf-card">
+        <div class="shelf-art" style="background:#f5ede3;">
+          <div class="shelf-art-bg">♪</div>
+          <div class="shelf-art-label">🎵</div>
+        </div>
+        <div class="shelf-info">
+          <div class="shelf-title">Parachutes</div>
+          <div class="shelf-sub">Coldplay</div>
+        </div>
+      </div>
+      <div class="shelf-card">
+        <div class="shelf-art" style="background:#e8edf5;">
+          <div class="shelf-art-bg">♫</div>
+          <div class="shelf-art-label">🎸</div>
+        </div>
+        <div class="shelf-info">
+          <div class="shelf-title">Nectar</div>
+          <div class="shelf-sub">Joji</div>
+        </div>
+      </div>
+      <div class="shelf-card">
+        <div class="shelf-art" style="background:#edf5e8;">
+          <div class="shelf-art-bg">♩</div>
+          <div class="shelf-art-label">🎹</div>
+        </div>
+        <div class="shelf-info">
+          <div class="shelf-title">Apricot Princess</div>
+          <div class="shelf-sub">Rex Orange County</div>
+        </div>
+      </div>
+      <div class="shelf-card">
+        <div class="shelf-art" style="background:#f5e8f0;">
+          <div class="shelf-art-bg">♬</div>
+          <div class="shelf-art-label">🎤</div>
+        </div>
+        <div class="shelf-info">
+          <div class="shelf-title">Ballads 1</div>
+          <div class="shelf-sub">Joji</div>
+        </div>
+      </div>
+      <div class="shelf-card">
+        <div class="shelf-art" style="background:#f5f0e8;">
+          <div class="shelf-art-bg">♪</div>
+          <div class="shelf-art-label">🥁</div>
+        </div>
+        <div class="shelf-info">
+          <div class="shelf-title">Son Of Spergy</div>
+          <div class="shelf-sub">Daniel Caesar</div>
+        </div>
+      </div>
+      <div class="shelf-card">
+        <div class="shelf-art" style="background:#e8f5f5;">
+          <div class="shelf-art-bg">♫</div>
+          <div class="shelf-art-label">🎺</div>
+        </div>
+        <div class="shelf-info">
+          <div class="shelf-title">Blonde</div>
+          <div class="shelf-sub">Frank Ocean</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- GAMES -->
+  <section id="games">
+    <div class="section-label">games i recently played</div>
+    <div class="shelf-grid reveal-group">
+      <div class="shelf-card">
+        <div class="shelf-art" style="background:#e8edf5;">
+          <div class="shelf-art-bg">🎮</div>
+          <div class="shelf-art-label">🕹</div>
+        </div>
+        <div class="shelf-info">
+          <div class="shelf-title">Roblox</div>
+          <div class="shelf-sub">VaanGogh</div>
+        </div>
+      </div>
+      <div class="shelf-card">
+        <div class="shelf-art" style="background:#f0e8f5;">
+          <div class="shelf-art-bg">🎮</div>
+          <div class="shelf-art-label">👾</div>
+        </div>
+        <div class="shelf-info">
+          <div class="shelf-title">Mobile Legends</div>
+          <div class="shelf-sub">lupa id nya, nanti ku tambahin deh</div>
+        </div>
+      </div>
+      <!-- <div class="shelf-card">
+        <div class="shelf-art" style="background:#edf5e8;">
+          <div class="shelf-art-bg">🎮</div>
+          <div class="shelf-art-label">⚔️</div>
+        </div>
+        <div class="shelf-info">
+          <div class="shelf-title">Nama Game</div>
+          <div class="shelf-sub">genre · platform</div>
+        </div>
+      </div>
+      <div class="shelf-card">
+        <div class="shelf-art" style="background:#f5ede3;">
+          <div class="shelf-art-bg">🎮</div>
+          <div class="shelf-art-label">🧩</div>
+        </div>
+        <div class="shelf-info">
+          <div class="shelf-title">Nama Game</div>
+          <div class="shelf-sub">genre · platform</div>
+        </div>
+      </div>
+      <div class="shelf-card">
+        <div class="shelf-art" style="background:#f5e8f0;">
+          <div class="shelf-art-bg">🎮</div>
+          <div class="shelf-art-label">🏆</div>
+        </div>
+        <div class="shelf-info">
+          <div class="shelf-title">Nama Game</div>
+          <div class="shelf-sub">genre · platform</div>
+        </div>
+      </div>
+      <div class="shelf-card">
+        <div class="shelf-art" style="background:#f5f5e8;">
+          <div class="shelf-art-bg">🎮</div>
+          <div class="shelf-art-label">🌍</div>
+        </div>
+        <div class="shelf-info">
+          <div class="shelf-title">Nama Game</div>
+          <div class="shelf-sub">genre · platform</div>
+        </div>
+      </div> -->
+    </div>
+  </section>
+
+  <!-- FILM -->
+  <section id="film">
+    <div class="section-label">film &amp; series favorit</div>
+    <div class="shelf-grid reveal-group">
+      <div class="shelf-card">
+        <div class="shelf-art" style="background:#f0e8f5;">
+          <div class="shelf-art-bg">🎬</div>
+          <div class="shelf-art-label">🎞</div>
+        </div>
+        <div class="shelf-info">
+          <div class="shelf-title">MARVEL</div>
+          <div class="shelf-sub">marvel's movies, </div>
+        </div>
+      </div>
+      <div class="shelf-card">
+        <div class="shelf-art" style="background:#e8f0f5;">
+          <div class="shelf-art-bg">🎬</div>
+          <div class="shelf-art-label">📽</div>
+        </div>
+        <div class="shelf-info">
+          <div class="shelf-title">Dead Poets Society</div>
+          <div class="shelf-sub">1989 · Komedi/Drama</div>
+        </div>
+      </div>
+      <div class="shelf-card">
+        <div class="shelf-art" style="background:#f5ece8;">
+          <div class="shelf-art-bg">🎬</div>
+          <div class="shelf-art-label">🎥</div>
+        </div>
+        <div class="shelf-info">
+          <div class="shelf-title">La La Land</div>
+          <div class="shelf-sub">2016 · Musical/AJGG</div>
+        </div>
+      </div>
+      <div class="shelf-card">
+        <div class="shelf-art" style="background:#eef5e8;">
+          <div class="shelf-art-bg">🎬</div>
+          <div class="shelf-art-label">📺</div>
+        </div>
+        <div class="shelf-info">
+          <div class="shelf-title">Moon Knight</div>
+          <div class="shelf-sub">2022 · psychological thriller, action-adventure, and supernatural fantasy</div>
+        </div>
+      </div>
+      <div class="shelf-card">
+        <div class="shelf-art" style="background:#e8f5ee;">
+          <div class="shelf-art-bg">🎬</div>
+          <div class="shelf-art-label">🎬</div>
+        </div>
+        <div class="shelf-info">
+          <div class="shelf-title">10 Thins I Hate About You</div>
+          <div class="shelf-sub">1999 · Comedy/Romance</div>
+        </div>
+      </div>
+      <div class="shelf-card">
+        <div class="shelf-art" style="background:#f5f5e8;">
+          <div class="shelf-art-bg">🎬</div>
+          <div class="shelf-art-label">🍿</div>
+        </div>
+        <div class="shelf-info">
+          <div class="shelf-title">The Prestige</div>
+          <div class="shelf-sub">2006 · psychological thriller, mystery, and period drama</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- IDEAS -->
+  <section id="ideas">
+    <div class="section-label">ideas &amp; thoughts</div>
+    <div class="ideas-list reveal-group">
+      <div class="idea-item">
+        <p>As s overthinker, i got a lot of things going in mind.</p>
+        <div class="idea-tag">Mind</div>
+      </div>
+      <div class="idea-item">
+        <p>Pantang nikah sebelum punya tempat tinggal.</p>
+        <div class="idea-tag">Thoughts</div>
+      </div>
+      <div class="idea-item">
+        <p>Indonesia rusak banget, bener kabur aja dulu.</p>
+        <div class="idea-tag">Difficulty level: wni</div>
+      </div>
+    </div>
+  </section>
+
+<!-- GUESTBOOK -->
+<section id="guestbook">
+  <div class="section-label">guestbook</div>
+  <div class="guestbook-wrap reveal">
+
+    <div class="guestbook-form">
+      <input type="text" id="gb-name" placeholder="nama kamu" maxlength="40" />
+      <textarea id="gb-message" placeholder="tinggalkan pesan..." maxlength="280" rows="3"></textarea>
+      <div class="guestbook-form-footer">
+        <span id="gb-char">280 karakter tersisa</span>
+        <button class="btn btn-primary" id="gb-submit">kirim →</button>
+      </div>
+      <p id="gb-status"></p>
+    </div>
+
+    <div class="guestbook-entries" id="gb-entries">
+      <div class="gb-loading">memuat pesan...</div>
+    </div>
+
+  </div>
+</section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="section-label">contact</div>
+    <div class="contact-block reveal">
+      <p>
+        Kamu bisa reach out lewat email atau media sosial di bawah. Terbuka untuk ngobrol tentang apa pun — project, kolaborasi, atau sekadar halo.
+      </p>
+      <div class="contact-links">
+        <a href="mailto:neonalbusiness@gmail.com" class="btn btn-primary">email aku →</a>
+        <a href="https://www.instagram.com/opqstfu" class="btn btn-ghost">instagram</a>
+        <a href="https://t.me/opqstfu" class="btn btn-ghost">telegram</a>
+        <a href="https://github.com/FitrahNeonal" class="btn btn-ghost">github</a>
+        <a href="https://www.linkedin.com/in/fitrah-neonal-7512382b6/" class="btn btn-ghost">linkedin</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <p>dibuat dengan niat gabut &amp; sedikit kopi — <span>2026</span></p>
+  <p class="footer-updated">terakhir diupdate: <span id="last-updated"></span></p>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
